@@ -1,12 +1,13 @@
-import { useState } from 'react'
+import { IconStyle } from './assets/iconfont/iconfont'
+import { GlobalStyle } from './style'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <button onClick={() => setCount(count + 1)}>count is: {count}</button>
-    </>
+    <div className="App">
+      <GlobalStyle></GlobalStyle>
+      <IconStyle></IconStyle>
+      <i className="iconfont">&#xe62b;</i>
+    </div>
   )
 }
 
