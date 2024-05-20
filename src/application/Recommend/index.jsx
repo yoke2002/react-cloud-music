@@ -1,6 +1,7 @@
 import React from 'react'
 import { useRef, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { forceCheck } from 'react-lazyload'
 
 import Scroll from '../../base-ui/Scroll'
 import Slider from '../../components/Slider'
@@ -22,7 +23,7 @@ function Recommend() {
 
   return (
     <Content>
-      <Scroll ref={scrollRef}>
+      <Scroll ref={scrollRef} onScroll={forceCheck}>
         <div>
           <Slider bannerList={bannerList} />
           <RecommendList recommendList={recommendList} />
