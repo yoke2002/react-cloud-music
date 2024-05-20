@@ -1,6 +1,11 @@
 import React from 'react'
+import { useRef } from 'react'
+
+import Scroll from '../../base-ui/Scroll'
 import Slider from '../../components/Slider'
 import RecommendList from '../../components/List'
+
+import { Content } from './style'
 
 function Recommend() {
   //mock 数据
@@ -21,11 +26,17 @@ function Recommend() {
     }
   })
 
+  const scrollRef = useRef(null)
+
   return (
-    <div>
-      <Slider bannerList={bannerList} />
-      <RecommendList recommendList={recommendList} />
-    </div>
+    <Content>
+      <Scroll ref={scrollRef}>
+        <div>
+          <Slider bannerList={bannerList} />
+          <RecommendList recommendList={recommendList} />
+        </div>
+      </Scroll>
+    </Content>
   )
 }
 
