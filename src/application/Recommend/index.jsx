@@ -18,8 +18,12 @@ function Recommend() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getBannerList())
-    dispatch(getRecommendList())
+    if (!bannerList.length) {
+      dispatch(getBannerList())
+    }
+    if (!recommendList.length) {
+      dispatch(getRecommendList())
+    }
   }, [])
 
   const scrollRef = useRef(null)
