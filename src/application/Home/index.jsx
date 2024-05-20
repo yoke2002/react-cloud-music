@@ -14,9 +14,9 @@ function Home() {
   return (
     <div>
       <Top>
-        <span className="iconfont menu">&#xe62b;</span>
+        <span className="iconfont menu">&#xe65c;</span>
         <span className="title">网易云音乐</span>
-        <span className="iconfont search">&#xe65c;</span>
+        <span className="iconfont search">&#xe62b;</span>
       </Top>
 
       <Tab>
