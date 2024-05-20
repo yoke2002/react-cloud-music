@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { forceCheck } from 'react-lazyload'
 
 import Scroll from '../../base-ui/Scroll'
+import Loading from '../../base-ui/Loading'
 import Slider from '../../components/Slider'
 import RecommendList from '../../components/List'
 
@@ -11,7 +12,9 @@ import { Content } from './style'
 import { getBannerList, getRecommendList } from './recommendSlice'
 
 function Recommend() {
-  const { bannerList, recommendList } = useSelector((store) => store.recommend)
+  const { bannerList, recommendList, enterLoading } = useSelector(
+    (store) => store.recommend
+  )
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -23,6 +26,7 @@ function Recommend() {
 
   return (
     <Content>
+      {enterLoading ? <Loading /> : null}
       <Scroll ref={scrollRef} onScroll={forceCheck}>
         <div>
           <Slider bannerList={bannerList} />

@@ -3,7 +3,8 @@ import { getBannerRequest, getRecommendListRequest } from '../../api/request'
 
 const initialState = {
   bannerList: [],
-  recommendList: []
+  recommendList: [],
+  enterLoading: true
 }
 
 export const getBannerList = createAsyncThunk(
@@ -40,6 +41,7 @@ export const recommendSlice = createSlice({
       })
       .addCase(getRecommendList.fulfilled, (state, action) => {
         state.recommendList = action.payload
+        state.enterLoading = false
       })
   }
 })
