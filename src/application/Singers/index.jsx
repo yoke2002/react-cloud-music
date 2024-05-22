@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import LazyLoad, { forceCheck } from 'react-lazyload'
 
@@ -18,9 +18,12 @@ import {
   changePullUpLoading
 } from './singerSlice'
 
+import { CHANGE_ALPHA, CHANGE_CATEGORY, CategoryContext } from './data'
+
 function Singers() {
-  const [category, setCategory] = useState('')
-  const [alpha, setAlpha] = useState('')
+  const { data, dispatch: categoryDispatch } = useContext(CategoryContext)
+  const [category, setCategory] = useState(data.category)
+  const [alpha, setAlpha] = useState(data.alpha)
 
   const { singerList, enterLoading, pullUpLoading, pullDownLoading } =
     useSelector((store) => store.singers)
@@ -33,12 +36,14 @@ function Singers() {
 
   const handleUpdateCategory = (val) => {
     setCategory(val)
+    categoryDispatch({ type: CHANGE_CATEGORY, payload: val })
     dispatch(changeEnterLoading(true))
     dispatch(getSingerList({ category: val, alpha }))
   }
 
   const handleUpdateAlpha = (val) => {
     setAlpha(val)
+    categoryDispatch({ type: CHANGE_ALPHA, payload: val })
     dispatch(changeEnterLoading(true))
     dispatch(getSingerList({ category, alpha: val }))
   }
